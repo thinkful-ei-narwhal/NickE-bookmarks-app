@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Initial View Mock Up</title>
+  <link rel="stylesheet" href="./../styles/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <h1>My Bookmarks</h1>
+  <form>
+    <div class="form-link">
+      <label>Add New Bookmark:</label>
+      <input type="text" placeholder="http://samplelink.code/test" id="link">
+    </div>
+    <div class="link-walkthrough">
+      <span>Link Walkthrough</span>
+      <i class="fa fa-pencil-square-o"></i>
+    </div>
+    <div class="form-rating">
+      <div>
+        <div class="form-stars">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+        </div>
+        <textarea name="description" placeholder="Add a description (optional)" id="description"></textarea>
+      </div>
+    </div>
+    <div class="form-buttons">
+      <input type="reset" value="Cancel">
+      <div class="popup">
+        <span class="popuptext" id="myPopup">Rating required</span>
+        <input type="submit" value="Create" id="submit">
+      </div>
+    </div>
+  </form>
+  <script src="../index.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,427 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+  min-width: 280px;
+  max-width: 300px;
+}
+
+.error-container {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+.error-container * {
+  display: inline-block;
+}
+
+#cancel-error {
+  margin-right: 0.5rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+.icon-span {
+  padding-right: 5px;
+}
+
+.title {
+  font-weight: bolder;
+}
+
+.book-item-container {
+  width: auto;
+  border-style: solid;
+  border-color: black;
+  border-width: 0px 1px 1px 1px;
+}
+
+#bookmark-container div:first-child {
+  border-top-width: 1px;
+ }
+
+ .title-container {
+  text-align: left;
+  vertical-align: middle;
+ }
+
+.book-item {
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
+  border: none;
+}
+
+.star-container {
+  min-width: 150px;
+  text-align: right;
+}
+
+.js-collapsed {
+  background-color: white;
+}
+
+.js-selected {
+  background-color: gainsboro;
+}
+
+.fa-trash-o {
+  font-size: 20px;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#bookmark-container {
+  border:1px black solid;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.nav-buttons {
+  border:1px black solid;
+  background-color: gainsboro;
+  font-size: 105%;
+  color: black;
+  font-weight: 550;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.title-container {
+ width: 100%;
+}
+
+.button-icon{
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+}
+
+#filter {
+  min-width: 135px;
+}
+
+#bookmark-icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+}
+
+#book-title {
+  margin-bottom: 5px;
+}
+
+.title-button {
+  width: 90%;
+}
+
+.edit-button {
+  font-size: 20px;
+  width: 10%;
+  background-color: white;
+  border: none;
+  justify-self: right;
+}
+
+.trash-button {
+  width: 10%;
+  flex-direction: row-reverse;
+}
+
+.enabled {
+  display: flex;
+  flex-direction: row;
+}
+
+.enabled-edit {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: right;
+}
+
+.item-dropdown {
+  display: flex;
+  flex-direction: column;
+  line-height: 22px;
+  vertical-align: middle;
+  width: auto;
+  background-color: white;
+  padding: 5px 10px 10px 10px;
+}
+
+.dropdown-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+#site-button {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 105%;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: none;
+}
+
+.scroll {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: auto;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: 1px solid black;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.star-cb-group {
+  font-size: 0;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.star-cb-group * {
+  font-size: 1rem;
+}
+.star-cb-group > input {
+  display: none;
+}
+.star-cb-group > input + label {
+  display: inline-block;
+  overflow: hidden;
+  text-indent: 9999px;
+  width: 2em;
+  height: 3em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.star-cb-group > input + label:before {
+  display: inline-block;
+  text-indent: -9999px;
+  content: "☆";
+  color: #888;
+  font-size: 40px;
+}
+.star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
+  content: "★";
+  color: black;
+  font-size: 40px;
+  text-shadow: 0 0 1px #333;
+}
+.star-cb-group > .star-cb-clear + label {
+  text-indent: -9999px;
+  width: 2em;
+  height: 3em;
+  margin-left: -.5em;
+}
+.star-cb-group > .star-cb-clear + label:before {
+  width: 2em;
+  height: 3em;
+}
+.star-cb-group:hover > input + label:before {
+  content: "☆";
+  font-size: 40px;
+  color: #888;
+  text-shadow: none;
+}
+.star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
+  content: "★";
+  font-size: 40px;
+  color: black;
+  text-shadow: 0 0 1px #333;
+}
+
+#link{
+  margin-top: 5px;
+}
+
+#description, #description-edit {
+  height: 250px;
+}
+
+textarea {
+  margin-top: 10px;
+  width:100%;
+  max-width:100%;
+}
+
+.link-walkthrough {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 0;
+  padding: 10px 10px 10px 10px;
+  margin-top: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.link-walkthrough > .fa {
+  vertical-align: center;
+  line-height: 22px;
+}
+
+.form-link {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.form-rating {
+  border: 1px solid black;
+  padding: 10px 10px 10px 10px;
+}
+
+.form-stars {
+  text-align: center;
+}
+
+.form-stars > .fa {
+  font-size: 30px;
+}
+
+.form-buttons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+input[type=text] {
+  width: 100%;
+  height: 30px;
+  padding-left: 10px;
+  font-style: bold;
+  font-size: 15px;
+}
+
+input[type=text]::placeholder {
+  font-style: bold;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+input[type=submit], input[type=reset] {
+  padding: 5px 25px 5px 25px;
+  border-color: lightgrey;
+}
+
+input[type=submit] {
+  background-color: lightblue;
+}
+
+/* error form stuff */
+
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: red;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/* ********************************
+          Media Query
+**************************************/
+
+@media (min-width: 700px) {
+	body {
+    font-size: 22px;
+    max-width: 500px;
+  }
+  
+  .title-container, .enabled {
+    height: 30px;
+   }
+
+	button {
+		font-size: 22px;
+	}
+}
+
+@media (min-width: 1024px) {
+	body {
+    font-size: 25px;
+    max-width: 700px;
+  }
+
+	button {
+    font-size: 22px;
+	}
+}

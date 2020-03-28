@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Initial View Mock Up</title>
+  <link rel="stylesheet" href="./../styles/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <h1>My Bookmarks</h1>
+  <div id="button-container">
+    <button class="nav-buttons" id="flex-new">
+      <i class="fa fa-plus-square-o"></i>
+      <span class="icon-span"> New </span>
+      <i class="fa fa-bookmark-o"></i>
+    </button>
+
+    <div class="nav-buttons" id="filter">
+      <span class="icon-span"> Filter For </span>
+      <br>
+      <select id="filter-options">
+        <option value="0"> All Books</option>
+        <option value="1"> ★+</option>
+        <option value="2"> ★★+</option>
+        <option value="3"> ★★★+</option>
+        <option value="4"> ★★★★+</option>
+        <option value="5"> ★★★★★</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="book-item-container">
+    <div class="enabled">
+      <button class="book-item js-selected title-button">
+        <span class="title">Example title</span>
+      </button>
+      <button class="book-item trash-button"><i class="fa fa-trash-o"></i></button>
+    </div>
+    <section class="item-dropdown">
+      <div class="dropdown-info">
+        <button id="site-button"> Visit Site</button>
+        <div class="star-container">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half-empty"></i>
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star-o"></i>
+        </div>
+      </div>
+      <div class="scroll">
+        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make
+          a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+          containing
+          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+          versions
+          of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make
+          a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+          containing
+          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+          versions
+          of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been
+          the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make
+          a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+          containing
+          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+          versions
+          of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been
+          the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make
+          a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+          containing
+          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+          versions
+          of Lorem Ipsum.</span>
+      </div>
+      <div class="enabled-edit">
+        <button class="edit-button"><i class="fa fa-pencil-square-o"></i></button>
+      </div>
+    </section>
+  </div>
+  <div class="book-item-container">
+    <button class="book-item">
+      <span class="title">Title 10</span>
+      <div class="star-container">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-half-empty"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
+      </div>
+    </button>
+  </div>
+  <div class="book-item-container">
+    <button class="book-item">
+      <span class="title">Title 9</span>
+      <div class="star-container">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-half-empty"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
+      </div>
+  </div>
+  <div class="book-item-container">
+    </button> <button class="book-item">
+      <span class="title">Title 8</span>
+      <div class="star-container">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-half-empty"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
+      </div>
+  </div>
+  <div class="book-item-container">
+    </button> <button class="book-item">
+      <span class="title">Title 7</span>
+      <div class="star-container">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-half-empty"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
+      </div>
+  </div>
+  <div class="book-item-container">
+    </button> <button class="book-item">
+      <span class="title">Title 6</span>
+      <div class="star-container">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-half-empty"></i>
+        <i class="fa fa-star-o"></i>
+        <i class="fa fa-star-o"></i>
+      </div>
+  </div>
+  </button>
+  </div>
+</body>
+
+</html>
