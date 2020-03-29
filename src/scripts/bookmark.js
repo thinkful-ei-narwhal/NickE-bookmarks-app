@@ -110,7 +110,7 @@ function generateBookmarks() {
       bookMarksArray.push(bookmarkHtml);
     }
   });
-  if (bookMarksArray.length === 0) {
+  if (bookMarksArray.length === 0 && parseInt(store.filter) === 0) {
     return '<p>You have no bookmarks :( <br> Click New to get started</p>';
   }
   return bookMarksArray.join('');
