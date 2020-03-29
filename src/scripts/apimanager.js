@@ -30,13 +30,8 @@ function getBookmarks() {
   return listApiFetch(urlBookmarks);
 }
 
-function postBookmark(titleBook, urlBook, descBook, ratingBook) {
-  const data = {
-    'title': `${titleBook}`,
-    'url': `${urlBook}`,
-    'desc': `${descBook}`,
-    'rating': `${ratingBook}`
-  };
+function postBookmark(title, url, desc, rating) {
+  const data = { title, url, desc, rating };
   const requestObj = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -46,11 +41,8 @@ function postBookmark(titleBook, urlBook, descBook, ratingBook) {
   return listApiFetch(urlBookmarks, requestObj);
 }
 
-function patchBookmark(bookId, descBook, ratingBook) {
-  const data = {
-    'desc': `${descBook}`,
-    'rating': `${ratingBook}`
-  };
+function patchBookmark(bookId, desc, rating) {
+  const data = { desc, rating };
   const requestObj = {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },

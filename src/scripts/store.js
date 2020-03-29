@@ -29,7 +29,15 @@ const findById = function (id) {
 };
 
 const addBookmark = function (currentBookmark) {
-  this.bookmarks.push(currentBookmark);
+  const storeBookmark = {
+    id: currentBookmark.id,
+    title: currentBookmark.title,
+    rating: currentBookmark.rating,
+    url: currentBookmark.url,
+    desc: currentBookmark.desc,
+    expanded: false
+  };
+  this.bookmarks.push(storeBookmark);
 };
 
 const findAndUpdate = function (id, newData) {

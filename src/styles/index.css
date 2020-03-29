@@ -9,9 +9,38 @@ body {
 }
 
 .error-container {
-  color: red;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform:translateX(-50%);
   font-weight: bold;
   text-align: center;
+	
+}
+
+.error-content {
+  width: 350px;
+  margin: 10px 0px;
+	padding: 25px 10px 15px 25px;
+	background-repeat: no-repeat;
+	background-position: 15px center;
+  color: #D8000C;
+  background-color: #FFBABA;
+  border:1px black solid;
+}
+
+.error-content > img {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.error-button {
+  display: block;
+}
+
+#bookmark-container {
+  text-align: center;
+  font-weight: bold;
 }
 
 .error-container * {
@@ -102,6 +131,11 @@ h1 {
   padding-bottom: 10px;
 }
 
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .title-container {
  width: 100%;
 }
@@ -185,6 +219,9 @@ h1 {
 }
 
 .scroll {
+  font-size: medium;
+  font-weight: normal;
+  text-align: left;
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -328,15 +365,6 @@ input[type=text]::placeholder {
   vertical-align: middle;
 }
 
-input[type=submit], input[type=reset] {
-  padding: 5px 25px 5px 25px;
-  border-color: lightgrey;
-}
-
-input[type=submit] {
-  background-color: lightblue;
-}
-
 /* error form stuff */
 
 /* Popup container - can be anything you want */
@@ -412,7 +440,11 @@ input[type=submit] {
 
 	button {
 		font-size: 22px;
-	}
+  }
+  
+  .error-content {
+    width: 550px !important;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -423,5 +455,9 @@ input[type=submit] {
 
 	button {
     font-size: 22px;
-	}
+  }
+  
+  .error-content {
+    width: 550px !important;
+  }
 }

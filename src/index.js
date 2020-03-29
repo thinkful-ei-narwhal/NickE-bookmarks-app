@@ -1,20 +1,20 @@
 import $ from 'jquery';
 import './styles/index.css';
 import store from './scripts/store';
-import eventListener from './scripts/eventlistener';
+import bookmark from './scripts/bookmark';
 import api from './scripts/apimanager';
 
 function main() {
   api.getBookmarks()
     .then((items) => {
       items.forEach((item) => store.addBookmark(item));
-      eventListener.render();
+      bookmark.render();
     }).catch((error) => {
       store.setError(error.message);
-      eventListener.renderError();
+      bookmark.renderError();
     });
-  eventListener.handleEventListeners();
-  eventListener.render();
+  bookmark.handleEventListeners();
+  bookmark.render();
 }
 
 $(main);

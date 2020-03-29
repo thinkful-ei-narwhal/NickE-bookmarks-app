@@ -1,15 +1,28 @@
 /* eslint-disable no-console */
-import cuid from 'cuid';
 import $ from 'jquery';
 import store from './store';
 import api from './apimanager';
 
+$.fn.extend({
+  serializeJson: function () {
+    const formData = new FormData(this[0]);
+    const o = {};
+    formData.forEach((val, name) => o[name] = val);
+    return o;
+  }
+});
+
 const generateError = function (message) {
   return `
-      <section class="error-content">
-        <button id="cancel-error">X</button>
-        <p>${message}</p>
-      </section>
+  <section class="error-content">
+  <div>
+    <img src="https://i.imgur.com/GnyDvKN.png" alt="error image">
+    <p>${message}</p>
+  </div>
+  <div class="error-button">
+    <button class="nav-buttons" id="cancel-error">Okay</button>
+  </div>
+</section>
     `;
 };
 
@@ -75,7 +88,7 @@ function generateExpandHTML(bookId) {
               ${appendStars(bookmark)}
             </div>    
             <div class="scroll">
-              <span>${bookmark.description}</span>
+              <span>${bookmark.desc}</span>
             </div>
             <div class="enabled-edit">
               <button class="edit-button" id="${bookmark.id}"><i class="fa fa-pencil-square-o"></i></button>
@@ -97,6 +110,9 @@ function generateBookmarks() {
       bookMarksArray.push(bookmarkHtml);
     }
   });
+  if (bookMarksArray.length === 0) {
+    return '<p>You have no bookmarks :( <br> Click New to get started</p>';
+  }
   return bookMarksArray.join('');
 }
 
@@ -135,15 +151,15 @@ function generateBookMarkPageHTML() {
 }
 
 function generatePostFormHTML() {
-  return `<form id="bookmark-form-add-bookmark">
+  return `<div class="error-container"></div>
+  <form id="bookmark-form-add-bookmark">
 <div class="form-link">
   <label>Book Title:</label>
-  <input type="text" id="book-title" placeholder="Book Title">
+  <input type="text" name="bookTitle" id="book-title" placeholder="Book Title" pattern=".{1,}" required title="1 character minimum">
   <label>Add New Bookmark:</label>
-  <input type="text" id="book-link" placeholder="http://samplelink.code/test">
+  <input type="text" name="url" id="book-link" placeholder="http://samplelink.code/test">
 </div>
 <div class="form-rating">
-<div class="error-container"></div>
   <span class="star-cb-group">
     <input type="radio" id="rating-5" name="rating" value="5" />
     <label for="rating-5">5</label>
@@ -159,20 +175,21 @@ function generatePostFormHTML() {
   <textarea name="description" id="description" placeholder="Add a description (optional)"
     id="description"></textarea>
 </div>
-<input type="reset" value="Cancel" id="cancel" class="cancel-button-add-bookmark">
-<input type="submit" value="Create" id="submit">
-
+<div class="form-buttons">
+<input type="reset" value="Cancel" id="cancel" class="cancel-button-add-bookmark nav-buttons">
+<input type="submit" value="Create" id="submit" class="nav-buttons">
+</div>
 </form>`;
 }
 
 function generatePatchFormHTML(bookId) {
   const bookmark = store.bookmarks.find(ele => ele.id === bookId);
   return `<div class="link-walkthrough">
+  <div class="error-container"></div>
   <span>Updating: ${bookmark.title}</span>
   <i class="fa fa-pencil-square-o"></i>
   </div>
   <form class="bookmark-form-edit-bookmark" id="${bookmark.id}">
-  <div class="error-container"></div>
 <div class="form-rating">
   <span class="star-cb-group">
     <input type="radio" id="rating-5" name="rating" value="5" />
@@ -189,8 +206,10 @@ function generatePatchFormHTML(bookId) {
   <textarea name="description" id="description" placeholder="edit description (optional)"
     id="description"></textarea>
 </div>
-<input type="reset" value="Cancel" id="cancel" class="cancel-button-edit-bookmark">
-<input type="submit" value="Update" id="submit">
+<div class="form-buttons">
+<input type="reset" value="Cancel" id="cancel" class="cancel-button-edit-bookmark nav-buttons">
+<input type="submit" value="Update" id="submit" class="nav-buttons">
+</div>
 </form>`;
 }
 
@@ -249,51 +268,41 @@ function handleNew() {
   });
 }
 
-//Needs more error catching on invalid input fields
 function handleSubmitBookmarkAdd() {
   $('.content-holder').on('submit', '#bookmark-form-add-bookmark', function (event) {
     event.preventDefault();
     console.log('Submitting new bookmark');
-    const title = $('#book-title').val();
-    const linkUrl = $('#book-link').val();
-    let description = $('#description').val();
-    const rating = $('input[name="rating"]:checked').val();
+    let eventObj = $(event.target).serializeJson();
+    const title = eventObj.bookTitle;
+    const url = eventObj.url;
+    let desc = eventObj.description;
+    let rating = eventObj.rating;
 
-    //NOTE: REINSTATE THIS WHEN YOU HAVE REAL ERROR HANDLING WORKING
-    //checks work for both create and edit
-    // if (title === '') { //Needs to be handled with API calls, need to take out internal function
-    //   storefunctions.storeError('Enter a book title');
-    //   internalfunctions.showErrorPopup(true);
-    //   return;
-    // } else if (linkUrl === '') {  //Needs to be handled with API calls, need to take out internal function
-    //   storefunctions.storeError('Enter a book url');
-    //   internalfunctions.showErrorPopup(true);
-    //   return;
-    // } else if (typeof rating === 'undefined') {  //Needs to be handled with API calls, need to take out internal function
-    //   storefunctions.storeError('Rating required');
-    //   internalfunctions.showErrorPopup(true);
-    //   return;
-    // }
-
-    if (typeof (description) === 'undefined') {
-      description = '';
+    if (typeof (desc) === 'undefined' || desc === '') {
+      desc = 'No description. Be the first to describe it by clicking the edit pen.';
     }
 
-    api.postBookmark(title, linkUrl, description, rating)
-      .then(() => {
+    //this will force an error because the post cannot handle anything between 1-5, but can handle nulls and undefined
+    if (rating === null || rating === undefined) {
+      rating = 0;
+    }
+
+    api.postBookmark(title, url, desc, rating)
+      .then(dataResponse => {
         resetVals();
         store.setError(null);
         store.setFilterLevel(0);
         store.toggleAddingBookmark();
         store.setExpandedBookmark();
         store.addBookmark({
-          id: cuid(),
-          title: title,
-          rating: rating,
-          url: linkUrl,
-          description: description,
+          id: dataResponse.id,
+          title: dataResponse.title,
+          rating: dataResponse.rating,
+          url: dataResponse.url,
+          desc: desc,
           expanded: false
         });
+        console.log(store.bookmarks);
         render();
       })
       .catch((error) => {
@@ -324,30 +333,32 @@ function handleEdit() {
   });
 }
 
-//Needs more error catching on invalid input fields
 function handleSubmitBookmarkUpdate() {
   $('.content-holder').on('submit', '.bookmark-form-edit-bookmark', function (event) {
     event.preventDefault();
     console.log('Updating bookmark');
-    let description = $('#description').val();
-    const rating = $('input[name="rating"]:checked').val();
     const bookId = this.id;
+    let eventObj = $(event.target).serializeJson();
+    let description = eventObj.description;
+    let rating = eventObj.rating;
 
-    if (typeof (description) === 'undefined') {
-      description = '';
+    if (typeof (description) === 'undefined' || description === '') {
+      description = 'No description. Be the first to describe it by clicking the edit pen.';
+    }
+
+    //this will force an error because the post cannot handle anything between 1-5, but can handle nulls and undefined
+    if (rating === null || rating === undefined) {
+      rating = 0;
     }
 
     api.patchBookmark(bookId, description, rating)
       .then(() => {
         resetVals();
         store.setError(null);
-        // internalfunctions.showErrorPopup(false);
         store.setFilterLevel(0);
         store.setEditingBookmark();
-        store.findAndUpdate(bookId, {
-          rating: rating,
-          description: description,
-        });
+        store.setExpandedBookmark();
+        store.findAndUpdate(bookId, { rating, desc: description });
         render();
       })
       .catch((error) => {
