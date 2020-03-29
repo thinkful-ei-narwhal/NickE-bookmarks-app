@@ -274,9 +274,13 @@ function handleSubmitBookmarkAdd() {
     console.log('Submitting new bookmark');
     let eventObj = $(event.target).serializeJson();
     const title = eventObj.bookTitle;
-    const url = eventObj.url;
+    let url = eventObj.url;
     let desc = eventObj.description;
     let rating = eventObj.rating;
+
+    if (!url.startsWith('https://') || !url.startsWith('http://')) {
+      url = 'https://' + url;
+    }
 
     if (typeof (desc) === 'undefined' || desc === '') {
       desc = 'No description. Be the first to describe it by clicking the edit pen.';
