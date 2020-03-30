@@ -387,16 +387,18 @@ function handleCancelBookmarkUpdate() {
 function handleTrash() {
   $('.content-holder').on('click', '.trash-button', function (event) {
     event.preventDefault();
-    const bookId = this.id;
-    api.deleteBookmark(bookId)
-      .then(() => {
-        store.findAndDelete(bookId);
-        render();
-      })
-      .catch((error) => {
-        store.setError(error.message);
-        renderError();
-      });
+    if(confirm('Are you sure you want to delete this item?')){
+      const bookId = this.id;
+      api.deleteBookmark(bookId)
+        .then(() => {
+          store.findAndDelete(bookId);
+          render();
+        })
+        .catch((error) => {
+          store.setError(error.message);
+          renderError();
+        }); 
+    }
   });
 }
 
