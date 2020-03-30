@@ -157,7 +157,7 @@ function generatePostFormHTML() {
   <label>Book Title:</label>
   <input type="text" name="bookTitle" id="book-title" placeholder="Book Title" pattern=".{1,}" required title="1 character minimum">
   <label>Add New Bookmark:</label>
-  <input type="text" name="url" id="book-link" placeholder="http://samplelink.code/test">
+  <input type="url" name="url" id="book-link" placeholder="http://samplelink.code/test">
 </div>
 <div class="form-rating">
   <span class="star-cb-group">
@@ -387,7 +387,7 @@ function handleCancelBookmarkUpdate() {
 function handleTrash() {
   $('.content-holder').on('click', '.trash-button', function (event) {
     event.preventDefault();
-    if(confirm('Are you sure you want to delete this item?')){
+    if (confirm('Are you sure you want to delete this item?')) {
       const bookId = this.id;
       api.deleteBookmark(bookId)
         .then(() => {
@@ -397,7 +397,7 @@ function handleTrash() {
         .catch((error) => {
           store.setError(error.message);
           renderError();
-        }); 
+        });
     }
   });
 }
